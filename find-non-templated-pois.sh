@@ -26,5 +26,6 @@ awk -vRS='<title>' -vORS='\n<title>' 1 |\
 awk -vRS='</title>' -vORS='\n</title>' 1 |\
 grep --before-context=1 "\*'''" |\
 grep "^<title>" |\
-sed -e "s/<title>/\[\[/;s/$/\]\]/" \
+grep -v ":" |\
+sed -e "s/<title>/*\[\[/;s/$/\]\]/" \
 > out.wikicode
